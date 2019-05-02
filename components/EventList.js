@@ -3,6 +3,7 @@ import { FlatList, Text, StyleSheet } from 'react-native'
 import EventCard from './EventCard'
 import ActionButton from 'react-native-action-button'
 import { Events } from '../common/data'
+import { connect } from 'react-redux'
 
 const styles = StyleSheet.create({
 	list: {
@@ -53,4 +54,10 @@ class EventList extends Component {
 
 }
 
-export default EventList
+const mapStateToProps = state => {
+	return {
+		events: state.events
+	}
+}
+
+export default connect(mapStateToProps)(EventList)
