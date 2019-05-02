@@ -7,7 +7,7 @@ import {
   TouchableHighlight
 } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
-import { formatDate } from './api'
+import { formatDate } from '../common/api'
 
 const styles = StyleSheet.create({
   borderTop: {

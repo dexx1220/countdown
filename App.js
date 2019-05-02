@@ -1,6 +1,6 @@
 import React from 'react';
-import EventList from './EventList';
-import EventForm from './EventForm';
+import EventList from './components/EventList';
+import EventForm from './components/EventForm';
 import { StackNavigator } from 'react-navigation'
 
 export default StackNavigator({

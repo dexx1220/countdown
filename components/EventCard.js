@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import {
   formatDate,
   getCountdownParts
-} from './api'
+} from '../common/api'
 
 const styles = StyleSheet.create({
   card: {

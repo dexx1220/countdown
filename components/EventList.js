@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FlatList, Text, StyleSheet } from 'react-native'
 import EventCard from './EventCard'
 import ActionButton from 'react-native-action-button'
-import { Events } from './data'
+import { Events } from '../common/data'
 
 const styles = StyleSheet.create({
 	list: {
