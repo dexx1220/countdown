@@ -1,4 +1,4 @@
-export const Events = [
+export const eventsList = [
   {
     "title": "Release RN course",
     "date": "2019-06-15T00:00:00.000Z",

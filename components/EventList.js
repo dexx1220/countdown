@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { FlatList, Text, StyleSheet } from 'react-native'
 import EventCard from './EventCard'
 import ActionButton from 'react-native-action-button'
-import { Events } from '../common/data'
 import { connect } from 'react-redux'
+import { getEvents } from '../actions'
 
 const styles = StyleSheet.create({
 	list: {
@@ -14,22 +14,24 @@ const styles = StyleSheet.create({
 })
 
 class EventList extends Component {
-	state = {events: []}
+	constructor(props) {
+		super(props)
+	}
 
 	componentDidMount() {
-		setInterval(() => {
-			this.setState({
-				events: this.state.events.map(evt => ({
-					...evt,
-					timer: Date.now()
-				}))
-			})
-		}, 1000)
-		const events = Events.map(e => ({
-			...e,
-			date: new Date(e.date)
-		}))
-		this.setState({ events })
+		getEvents()
+		const { events } = this.props
+
+		if (events.length > 0) {
+			setInterval(() => {
+				this.setState({
+					events: events.map(evt => ({
+						...evt,
+						timer: Date.now()
+					}))
+				})
+			}, 1000)
+		}
 	}
 
 	handleAddEvent = () => {
@@ -37,19 +39,21 @@ class EventList extends Component {
 	}
 
 	render() {
-		return [
-			<FlatList
-				data={this.state.events}
-				renderItem={({item}) => <EventCard event={item} />}
-				keyExtractor={item => item.id}
-				style={styles.list}
-			/>,
-			<ActionButton
-				key='fab'
-				onPress={this.handleAddEvent}
-				buttonColor="rgba(231, 76, 60, 1)"
-			/>
-		]
+		const { events } = this.props
+		return null
+		// return [
+		// 	<FlatList
+		// 		data={events}
+		// 		renderItem={({item}) => <EventCard event={item} />}
+		// 		keyExtractor={item => item.id}
+		// 		style={styles.list}
+		// 	/>,
+		// 	<ActionButton
+		// 		key='fab'
+		// 		onPress={this.handleAddEvent}
+		// 		buttonColor="rgba(231, 76, 60, 1)"
+		// 	/>
+		// ]
 	}
 
 }
@@ -60,4 +64,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps)(EventList)
+export default connect(
+	mapStateToProps,
+	{ getEvents }
+)(EventList)
